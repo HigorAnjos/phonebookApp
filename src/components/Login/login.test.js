@@ -11,11 +11,11 @@ describe('Teste o componente de Login',  () => {
     expect(textLogin).toBeInTheDocument();
   })
 
-  // it('Teste se e possivel digitar um email no input', () => {
-  //   render(<App />);
-  //   const emailType = 'higor@gmail.com';
-  //   const inputEmail = screen.getByRole('textbox', { name: /email/i });
-  //   userEvent.type(inputEmail, emailType);
-  //   expect(inputEmail.value).toBe(emailType);
-  // })
+  it('Teste se e possivel digitar um email no input', () => {
+    render(<App />);
+    const emailType = 'higor@gmail.com';
+    const inputEmail = screen.getByRole('textbox', { name: /email/i });
+    userEvent.type(inputEmail, emailType);
+    expect(inputEmail.value).toBe(emailType);
+  })
 })
