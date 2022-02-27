@@ -16,6 +16,11 @@ class Login extends React.Component {
     });
   }
 
+  handleSingIn = (event) => {
+    event.preventDefault();
+    console.log(this.state);
+  }
+
   render() {
     const { fildEmail, fildPassword } = this.state;
     return (
@@ -42,7 +47,10 @@ class Login extends React.Component {
               onChange={ this.handleChange }
             />
           </label>
-          <button type="submit">Entrar</button>
+          <button
+            type="submit"
+            onClick={ this.handleSingIn }
+          >Entrar</button>
         </form>
       </>
     );
