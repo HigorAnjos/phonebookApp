@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Home from './pages/Home'
 import Main from './pages/Main'
 import Newcontact from './pages/Newcontact'
 import Profile from './pages/Profile';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function PrivateRoute({component: Component, ...rest}) {
