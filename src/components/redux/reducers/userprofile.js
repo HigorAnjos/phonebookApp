@@ -10,7 +10,8 @@ const userProfile = (state = INITIAL_STATE, action) => {
     case actionsTypes.SET_USER_PROFILE:
       return {
         ...state,
-        payload: action.payload
+        name: action.payload.name,
+        email: action.payload.email,
       }
     default:
       return state;

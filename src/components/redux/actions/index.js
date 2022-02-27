@@ -5,6 +5,8 @@ const SET_LOGOUT = 'SET_LOGOUT';
 
 export const actionsTypes = {
   SET_USER_PROFILE,
+  SET_LOGIN,
+  SET_LOGOUT,
 }
 // ACTION CREATORS
 const setUserProfile = (userInfo) => ({
