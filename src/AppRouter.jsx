@@ -5,12 +5,16 @@ import Newcontact from './pages/Newcontact'
 import Profile from './pages/Profile';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import { useSelector } from 'react-redux';
 
 function PrivateRoute({component: Component, ...rest}) {
+
+  const { isAuthenticated } = useSelector(state => state.auth)
+
   return (
     <Route
       {...rest}
-      render={(props) => false ? 
+      render={(props) => isAuthenticated ? 
         <Component {...props} />
         : <Redirect to={{ pathname: '/', state: { from: props.location } }} />
       } />

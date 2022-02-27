@@ -1,4 +1,5 @@
 import { actionsTypes } from '../actions'
+
 const INITIAL_STATE = {
   isAuthenticated: false,
 }
