@@ -28,14 +28,14 @@ const setLogout = () => ({
   payload: false,
 });
 
-const setContact = (mycontacts) => ({
+const setContact = (mycontact) => ({
   type: SET_CONTACT,
-  payload: mycontacts,
+  payload: mycontact,
 });
 
-const removeContact = (mycontactsID) => ({
+const removeContact = (mycontactID) => ({
   type: REMOVE_CONTACT,
-  payload: mycontactsID,
+  payload: mycontactID,
 });
 
 export const actionsCreators = {

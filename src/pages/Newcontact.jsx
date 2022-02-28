@@ -1,12 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { actionsCreators } from '../redux/actions'
+import { v4 as uuidv4 } from 'uuid';
+import Header from '../components/Header';
 
 class Newcontact extends React.Component {
   constructor() {
     super();
 
     this.state = {
+      id: uuidv4(),
       fildName: '',
       fildPhone: '',
       fildEmail: '',
@@ -21,9 +24,10 @@ class Newcontact extends React.Component {
 
   handleSave = (event) => {
     event.preventDefault();
-    const { fildName, fildPhone, fildEmail } = this.state;
+    const { fildName, fildPhone, fildEmail, id } = this.state;
     const { saveContact } = this.props;
     const contact = {
+      id,
       name: fildName,
       phone: fildPhone,
       email: fildEmail,
@@ -31,10 +35,20 @@ class Newcontact extends React.Component {
     saveContact(contact);
   }
 
+  handleRemove = (event) => {
+    event.preventDefault();
+    const { id } = this.state;
+    const { removeContact } = this.props;
+
+    removeContact(id);
+  }
+
   render() {
     const { fildName, fildPhone, fildEmail } = this.state;
+
     return (
       <div>
+        <Header />
         <h1>Adicionar novo contato</h1>
         <form>
           <label htmlFor="name">
@@ -73,6 +87,10 @@ class Newcontact extends React.Component {
             type="submit"
             onClick={ this.handleSave }
           >Adicionar</button>
+          <button
+            type="submit"
+            onClick={ this.handleRemove }
+          >remover</button>
         </form>
       </div>
     );
@@ -80,7 +98,8 @@ class Newcontact extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  saveContact: (contact) => dispatch(actionsCreators.setContact(contact))
+  saveContact: (contact) => dispatch(actionsCreators.setContact(contact)),
+  removeContact: (contact) => dispatch(actionsCreators.removeContact(contact)),
 })
 
 export default connect(null, mapDispatchToProps)(Newcontact);

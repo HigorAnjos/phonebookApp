@@ -1,18 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { actionsCreators } from '../redux/actions'
+import Contact from '../components/contactCard/Contact';
+import Header from '../components/Header';
 
 class Main extends React.Component {
   render() {
+    const { mycontacts } = this.props;
     return (
       <div>
-        <ul>
-          <li><Link to="/profile">Perfil</Link></li>
-          <li><Link to="/newcontact">Adicionar novo contato</Link></li>
-        </ul>
+        <Header />
         <h1> Meus Contatos</h1>
+        <div>
+          {
+            mycontacts.map(({ name, phone, email}) => (<Contact name={ name } phone={ phone } email={email} />))
+          }
+        </div>
       </div>
     );
   }
 }
 
-export default Main;
+const mapDispatchToProps = (dispatch) => ({
+  saveContact: (contact) => dispatch(actionsCreators.setContact(contact)),
+  removeContact: (contact) => dispatch(actionsCreators.removeContact(contact)),
+})
+
+const mapStateToProps = ({ mycontacts }) => ({
+  mycontacts,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
