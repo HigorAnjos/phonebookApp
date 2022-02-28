@@ -1,16 +1,11 @@
 import { actionsTypes } from '../actions'
 
-const INITIAL_STATE = {
-  mycontacts: [],
-}
+const INITIAL_STATE = []
 
 const contacts = (store = INITIAL_STATE, action) => {
   switch(action.type) {
-    case actionsTypes.SET_MYCONTACTS:
-      return {
-        ...store,
-        mycontacts: action.payload
-      }
+    case actionsTypes.SET_CONTACT:
+      return [...store, action.payload];
     default:
       return store;
   }

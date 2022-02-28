@@ -2,13 +2,15 @@
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_LOGIN = 'SET_LOGIN';
 const SET_LOGOUT = 'SET_LOGOUT';
-const SET_MYCONTACTS = 'SET_MYCONTACTS'; 
+const SET_CONTACT = 'SET_CONTACT';
+const REMOVE_CONTACT = 'REMOVE_CONTACT';
 
 export const actionsTypes = {
   SET_USER_PROFILE,
   SET_LOGIN,
   SET_LOGOUT,
-  SET_MYCONTACTS,
+  SET_CONTACT,
+  REMOVE_CONTACT,
 }
 // ACTION CREATORS
 const setUserProfile = (userInfo) => ({
@@ -26,14 +28,20 @@ const setLogout = () => ({
   payload: false,
 });
 
-const setMyContacts = (mycontacts) => ({
-  type: SET_MYCONTACTS,
+const setContact = (mycontacts) => ({
+  type: SET_CONTACT,
   payload: mycontacts,
+});
+
+const removeContact = (mycontactsID) => ({
+  type: REMOVE_CONTACT,
+  payload: mycontactsID,
 });
 
 export const actionsCreators = {
   setUserProfile,
   setLogin,
   setLogout,
-  setMyContacts,
+  setContact,
+  removeContact,
 }
