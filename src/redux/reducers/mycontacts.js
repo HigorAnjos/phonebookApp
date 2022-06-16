@@ -8,6 +8,8 @@ const contacts = (store = INITIAL_STATE, action) => {
       return [...store, action.payload];
     case actionsTypes.REMOVE_CONTACT:
       return store.filter(({ id }) => id !== action.payload);
+    case actionsTypes.SET_CONTACT_LIST:
+      return action.payload;
     default:
       return store;
   }
