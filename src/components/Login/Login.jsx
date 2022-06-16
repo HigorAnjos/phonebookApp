@@ -1,12 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { actionsCreators } from '../../redux/actions';
+import api from '../../services/axios';
+import { setToken } from '../../services/localStorage';
 
 class Login extends React.Component {
   constructor () {
     super();
 
     this.state = {
-      fildEmail: '',
-      fildPassword: '',
+      fildEmail: 'george@gmail.com',
+      fildPassword: '1234',
     }
   }
 
@@ -16,9 +20,20 @@ class Login extends React.Component {
     });
   }
 
-  handleSingIn = (event) => {
+  handleSingIn = async (event) => {
     event.preventDefault();
-    console.log(this.state);
+
+    const { setLogin } = this.props;
+    try {
+      const { data } = await api.post('/user', { email: this.state.fildEmail, password: this.state.fildPassword });
+      if (data.token) {
+        setToken(data.token);
+        setLogin();
+        this.props.router.history.push('/main');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
@@ -57,4 +72,9 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapDispactchToProps = (dispatch) => ({
+  setLogin: () => dispatch(actionsCreators.setLogin()),
+});
+
+
+export default connect(null, mapDispactchToProps)(Login);

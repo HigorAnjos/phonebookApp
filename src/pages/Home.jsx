@@ -9,7 +9,7 @@ class Home extends React.Component {
         <h1> Agenda telefonica </h1>
         <main>
           <section>
-            <Login />
+            <Login router={this.props} />
           </section>
           <section>
             <Register />
