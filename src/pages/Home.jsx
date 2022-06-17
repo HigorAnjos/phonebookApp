@@ -1,15 +1,15 @@
 import React from 'react';
-import Login from '../components/Login/Login'
-import Register from '../components/Register/Register'
+import Login from '../components/Login/Login';
+import Register from '../components/Register/Register';
 
 class Home extends React.Component {
   render() {
-    return(
+    return (
       <div>
         <h1> Agenda telefonica </h1>
         <main>
           <section>
-            <Login router={this.props} />
+            <Login router={ this.props } />
           </section>
           <section>
             <Register />

@@ -1,13 +1,13 @@
 import React from 'react';
 
 class Register extends React.Component {
-  constructor () {
+  constructor() {
     super();
     this.state = {
       fildName: '',
       fildEmail: '',
       fildPassword: '',
-    }
+    };
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -15,7 +15,6 @@ class Register extends React.Component {
       [name]: value,
     });
   }
-
 
   render() {
     const { fildName, fildEmail, fildPassword } = this.state;
@@ -33,8 +32,8 @@ class Register extends React.Component {
               onChange={ this.handleChange }
             />
           </label>
-          <br/ >
-          <br/ >
+          <br />
+          <br />
           <label htmlFor="email">
             Email:
             <input
@@ -45,8 +44,8 @@ class Register extends React.Component {
               onChange={ this.handleChange }
             />
           </label>
-          <br/ >
-          <br/ >
+          <br />
+          <br />
           <label htmlFor="password">
             Senha:
             <input
@@ -57,8 +56,8 @@ class Register extends React.Component {
               onChange={ this.handleChange }
             />
           </label>
-          <br/ >
-          <br/ >
+          <br />
+          <br />
           <button type="submit">Cadastre-se</button>
         </form>
       </div>

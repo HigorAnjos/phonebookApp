@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { actionsCreators } from '../redux/actions'
 import { v4 as uuidv4 } from 'uuid';
+import { actionsCreators } from '../redux/actions';
 import Header from '../components/Header';
 
 class Newcontact extends React.Component {
@@ -13,7 +13,7 @@ class Newcontact extends React.Component {
       fildName: '',
       fildPhone: '',
       fildEmail: '',
-    }
+    };
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -31,7 +31,7 @@ class Newcontact extends React.Component {
       name: fildName,
       phone: fildPhone,
       email: fildEmail,
-    }
+    };
     saveContact(contact);
   }
 
@@ -86,11 +86,17 @@ class Newcontact extends React.Component {
           <button
             type="submit"
             onClick={ this.handleSave }
-          >Adicionar</button>
+          >
+            Adicionar
+
+          </button>
           <button
             type="submit"
             onClick={ this.handleRemove }
-          >remover</button>
+          >
+            remover
+
+          </button>
         </form>
       </div>
     );
@@ -100,6 +106,6 @@ class Newcontact extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   saveContact: (contact) => dispatch(actionsCreators.setContact(contact)),
   removeContact: (contact) => dispatch(actionsCreators.removeContact(contact)),
-})
+});
 
 export default connect(null, mapDispatchToProps)(Newcontact);

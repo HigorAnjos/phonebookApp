@@ -5,13 +5,13 @@ import api from '../../services/axios';
 import { setToken } from '../../services/localStorage';
 
 class Login extends React.Component {
-  constructor () {
+  constructor() {
     super();
 
     this.state = {
       fildEmail: 'george@gmail.com',
       fildPassword: '1234',
-    }
+    };
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -25,7 +25,10 @@ class Login extends React.Component {
 
     const { setLogin } = this.props;
     try {
-      const { data } = await api.post('/user', { email: this.state.fildEmail, password: this.state.fildPassword });
+      const { data } = await api.post('/user', {
+        email: this.state.fildEmail,
+        password: this.state.fildPassword,
+      });
       if (data.token) {
         setToken(data.token);
         setLogin();
@@ -65,7 +68,10 @@ class Login extends React.Component {
           <button
             type="submit"
             onClick={ this.handleSingIn }
-          >Entrar</button>
+          >
+            Entrar
+
+          </button>
         </form>
       </>
     );
@@ -75,6 +81,5 @@ class Login extends React.Component {
 const mapDispactchToProps = (dispatch) => ({
   setLogin: () => dispatch(actionsCreators.setLogin()),
 });
-
 
 export default connect(null, mapDispactchToProps)(Login);

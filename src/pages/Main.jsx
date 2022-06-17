@@ -6,11 +6,10 @@ import Header from '../components/Header';
 import getAllContacts from '../services/api';
 
 class Main extends React.Component {
-
   componentDidMount() {
     console.log('props', this.props);
     const { setContactList } = this.props;
-    getAllContacts().then(contacts => setContactList(contacts));
+    getAllContacts().then((contacts) => setContactList(contacts));
   }
 
   render() {
@@ -21,7 +20,7 @@ class Main extends React.Component {
         <h1> Meus Contatos</h1>
         <div>
           {
-            mycontacts.map(({ name, phone, email}) => (<Contact name={ name } phone={ phone } email={email} />))
+            mycontacts.map(({ name, phone, email }) => (<Contact name={ name } phone={ phone } email={ email } />))
           }
         </div>
       </div>
@@ -33,10 +32,10 @@ const mapDispatchToProps = (dispatch) => ({
   saveContact: (contact) => dispatch(actionsCreators.setContact(contact)),
   removeContact: (contact) => dispatch(actionsCreators.removeContact(contact)),
   setContactList: (contact) => dispatch(actionsCreators.setContactList(contact)),
-})
+});
 
 const mapStateToProps = ({ mycontacts }) => ({
   mycontacts,
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

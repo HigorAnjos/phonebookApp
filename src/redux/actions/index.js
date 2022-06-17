@@ -13,7 +13,7 @@ export const actionsTypes = {
   SET_CONTACT,
   REMOVE_CONTACT,
   SET_CONTACT_LIST,
-}
+};
 // ACTION CREATORS
 const setUserProfile = (userInfo) => ({
   type: SET_USER_PROFILE,
@@ -52,4 +52,4 @@ export const actionsCreators = {
   setContactList,
   setContact,
   removeContact,
-}
+};
