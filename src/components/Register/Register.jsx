@@ -1,6 +1,7 @@
 import React from 'react';
 
 import InputEmail from './InputEmail/InputEmail';
+import InputName from './InputName/InputName';
 
 class Register extends React.Component {
   constructor() {
@@ -24,16 +25,10 @@ class Register extends React.Component {
       <div>
         <h1>Register</h1>
         <form>
-          <label htmlFor="name">
-            Nome:
-            <input
-              id="name"
-              type="text"
-              name="fildName"
-              value={ fildName }
-              onChange={ this.handleChange }
-            />
-          </label>
+          <InputName
+            fildName={ fildName }
+            handleChange={ this.handleChange }
+          />
           <br />
           <br />
           <InputEmail
