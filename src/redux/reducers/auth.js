@@ -11,6 +11,7 @@ const auth = (state = INITIAL_STATE, action) => {
       ...state,
       isAuthenticated: action.payload,
     };
+  // eslint-disable-next-line sonarjs/no-duplicated-branches
   case actionsTypes.SET_LOGOUT:
     return {
       ...state,
