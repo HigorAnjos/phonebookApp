@@ -1,5 +1,7 @@
 import React from 'react';
 
+import InputEmail from './InputEmail/InputEmail';
+
 class Register extends React.Component {
   constructor() {
     super();
@@ -34,16 +36,10 @@ class Register extends React.Component {
           </label>
           <br />
           <br />
-          <label htmlFor="email">
-            Email:
-            <input
-              id="email"
-              type="text"
-              name="fildEmail"
-              value={ fildEmail }
-              onChange={ this.handleChange }
-            />
-          </label>
+          <InputEmail
+            fildEmail={ fildEmail }
+            handleChange={ this.handleChange }
+          />
           <br />
           <br />
           <label htmlFor="password">
