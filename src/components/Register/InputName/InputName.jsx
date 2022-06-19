@@ -1,6 +1,6 @@
 import React from 'react';
 import { string, func } from 'prop-types';
-import hasNameError from './validation';
+import hasNameError from './hasNameError';
 
 class InputName extends React.Component {
   constructor() {
@@ -11,8 +11,15 @@ class InputName extends React.Component {
   }
 
   validation = () => {
-    const { fildName } = this.props;
-    this.setState({ isValid: hasNameError(fildName) || 'ok' });
+    const { fildName, isNameValid, setValidation } = this.props;
+    const nameError = hasNameError(fildName);
+    this.setState({ isValid: hasNameError(fildName) || 'ok' }, () => {
+      if (!nameError) {
+        setValidation(true, isNameValid);
+      } else {
+        setValidation(false, isNameValid);
+      }
+    });
   }
 
   render() {
@@ -42,6 +49,8 @@ class InputName extends React.Component {
 InputName.propTypes = {
   fildName: string.isRequired,
   handleChange: func.isRequired,
+  isNameValid: string.isRequired,
+  setValidation: func.isRequired,
 };
 
 export default InputName;

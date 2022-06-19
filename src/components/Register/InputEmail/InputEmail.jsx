@@ -1,6 +1,6 @@
 import React from 'react';
 import { func, string } from 'prop-types';
-import hasEmailError from './validation';
+import hasEmailError from './hasEmailError';
 
 class InputEmail extends React.Component {
   constructor() {
@@ -11,8 +11,15 @@ class InputEmail extends React.Component {
   }
 
   validation = () => {
-    const { fildEmail } = this.props;
-    this.setState({ isValid: hasEmailError(fildEmail) || 'ok' });
+    const { fildEmail, isEmailValid, setValidation } = this.props;
+    const emailError = hasEmailError(fildEmail);
+    this.setState({ isValid: hasEmailError(fildEmail) || 'ok' }, () => {
+      if (!emailError) {
+        setValidation(true, isEmailValid);
+      } else {
+        setValidation(false, isEmailValid);
+      }
+    });
   }
 
   render() {
@@ -43,6 +50,8 @@ class InputEmail extends React.Component {
 InputEmail.propTypes = {
   fildEmail: string.isRequired,
   handleChange: func.isRequired,
+  isEmailValid: string.isRequired,
+  setValidation: func.isRequired,
 };
 
 export default InputEmail;
