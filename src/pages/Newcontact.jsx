@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
+import { func } from 'prop-types';
 import { actionsCreators } from '../redux/actions';
 import Header from '../components/Header';
 
@@ -107,5 +108,10 @@ const mapDispatchToProps = (dispatch) => ({
   saveContact: (contact) => dispatch(actionsCreators.setContact(contact)),
   removeContact: (contact) => dispatch(actionsCreators.removeContact(contact)),
 });
+
+Newcontact.propTypes = {
+  saveContact: func.isRequired,
+  removeContact: func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(Newcontact);

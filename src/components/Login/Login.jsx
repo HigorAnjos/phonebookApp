@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { func, shape } from 'prop-types';
 import { actionsCreators } from '../../redux/actions';
 import api from '../../services/axios';
 import { setToken } from '../../services/localStorage';
@@ -23,16 +24,17 @@ class Login extends React.Component {
   handleSingIn = async (event) => {
     event.preventDefault();
 
-    const { setLogin } = this.props;
+    const { setLogin, router: { history } } = this.props;
+    const { fildEmail, fildPassword } = this.state;
     try {
       const { data } = await api.post('/user', {
-        email: this.state.fildEmail,
-        password: this.state.fildPassword,
+        email: fildEmail,
+        password: fildPassword,
       });
       if (data.token) {
         setToken(data.token);
         setLogin();
-        this.props.router.history.push('/main');
+        history.push('/main');
       }
     } catch (error) {
       console.log(error);
@@ -78,8 +80,16 @@ class Login extends React.Component {
   }
 }
 
-const mapDispactchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
   setLogin: () => dispatch(actionsCreators.setLogin()),
 });
 
-export default connect(null, mapDispactchToProps)(Login);
+Login.propTypes = {
+  setLogin: func.isRequired,
+  router: shape({ history: shape({
+    push: func.isRequired,
+  }),
+  }).isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(Login);

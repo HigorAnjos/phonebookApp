@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { func, shape } from 'prop-types';
 import { actionsCreators } from '../redux/actions';
 import Contact from '../components/contactCard/Contact';
 import Header from '../components/Header';
@@ -20,7 +21,13 @@ class Main extends React.Component {
         <h1> Meus Contatos</h1>
         <div>
           {
-            mycontacts.map(({ name, phone, email }) => (<Contact name={ name } phone={ phone } email={ email } />))
+            mycontacts.map(({ name, phone, email }, i) => (
+              <Contact
+                key={ i }
+                name={ name }
+                phone={ phone }
+                email={ email }
+              />))
           }
         </div>
       </div>
@@ -37,5 +44,10 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = ({ mycontacts }) => ({
   mycontacts,
 });
+
+Main.propTypes = {
+  setContactList: func.isRequired,
+  mycontacts: shape([]).isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
